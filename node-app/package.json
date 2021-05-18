@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "chalk": "^4.1.1",
+    "validator": "^13.6.0",
+    "yargs": "^17.0.1"
+  },
+  "name": "node-app",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "go": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
