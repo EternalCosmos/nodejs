@@ -6,7 +6,7 @@ const saveNotes = function (notes) {
   fs.writeFileSync('notes.json', dataJSON)
 }
 
-const loadNotes = function () {
+const loadNotes = () =>  {
   try {
     return JSON.parse(fs.readFileSync('notes.json').toString())
   } catch (err) {
@@ -15,7 +15,7 @@ const loadNotes = function () {
   }
 }
 
-const addNote = function (title, body) {
+const addNote = (title, body) => {
   const notes = loadNotes();
   const duplicates = notes.filter(note => note.title === title);
   if (duplicates.length === 0) {
@@ -30,7 +30,7 @@ const addNote = function (title, body) {
   }
 }
 
-const removeNote = function (title) {
+const removeNote = (title) => {
   const notes = loadNotes();
   const targetNote = notes.find(note => note.title === title);
   if (targetNote) {
@@ -42,4 +42,11 @@ const removeNote = function (title) {
   }
 }
 
-module.exports = {addNote, removeNote};
+const listNotes = () => {
+  const notes = loadNotes();
+  const notesTitles = notes.map(note => note.title);
+  console.log(chalk.blueBright('Your notes'));
+  console.table(notesTitles)
+}
+
+module.exports = {addNote, removeNote, listNotes};
