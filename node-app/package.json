@@ -9,7 +9,10 @@
   "main": "app.js",
   "devDependencies": {},
   "scripts": {
-    "go": "nodemon app.js"
+    "go": "nodemon app.js",
+    "list": "node app.js list",
+    "add": "node app.js add",
+    "remove": "node app.js remove"
   },
   "author": "",
   "license": "ISC",

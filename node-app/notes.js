@@ -17,8 +17,8 @@ const loadNotes = () =>  {
 
 const addNote = (title, body) => {
   const notes = loadNotes();
-  const duplicates = notes.filter(note => note.title === title);
-  if (duplicates.length === 0) {
+  const duplicate = notes.find(note => note.title === title);
+  if (!duplicate) {
     notes.push({
       title,
       body,
@@ -44,9 +44,19 @@ const removeNote = (title) => {
 
 const listNotes = () => {
   const notes = loadNotes();
-  const notesTitles = notes.map(note => note.title);
   console.log(chalk.blueBright('Your notes'));
-  console.table(notesTitles)
+  console.table(notes)
 }
 
-module.exports = {addNote, removeNote, listNotes};
+const readNote = (title) => {
+  const notes = loadNotes();
+  const note = notes.find(note => note.title === title);
+  if (notep) {
+    console.log(chalk.bgBlue(note.title));
+    console.log(chalk.bgGreen(note.body));
+  } else {
+    console.log(chalk.bgRed('There is no such a note'))
+  }
+}
+
+module.exports = {addNote, removeNote, listNotes, readNote};

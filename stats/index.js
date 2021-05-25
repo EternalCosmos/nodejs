@@ -9,7 +9,7 @@ const timeCount = (time) => {
   const secs = parseInt(timeValues[2], 10);
 
   const currentStats = JSON.parse(fs.readFileSync('time.json').toString());
-  let { hours, minutes, seconds } = currentStats;
+  let { hours, minutes, seconds, videos } = currentStats;
 
   seconds += secs;
   if (seconds >= 60) {
@@ -25,9 +25,12 @@ const timeCount = (time) => {
 
   hours += hrs;
 
-  const newStats = {hours, minutes, seconds};
+  videos++;
+
+  const newStats = {hours, minutes, seconds, videos};
   fs.writeFileSync('time.json', JSON.stringify(newStats));
   console.log(chalk.cyan(`You've done ${hours}:${minutes}:${seconds} of 35:04:04`))
+  console.log(chalk.yellow(`You've done ${videos} videos of 177`))
 }
 
 yargs.command({
@@ -51,7 +54,7 @@ yargs.parse();
 /*
   TODO:
     1. Check for data and file existance
-    2. Show number of vids left
-    3. Show time left
+    2. Show number of vids left // DONE
+    3. Show time left 
     4. Format output data
 */ 
